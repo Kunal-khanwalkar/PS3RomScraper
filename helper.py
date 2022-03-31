@@ -21,7 +21,7 @@ def fetchSite(url):
         raise SystemExit(err)
 
 def FTP(url,file,directory):
-    directory = re.sub('[^A-Za-z0-9_\.\- ]+','',directory)
+    directory = re.sub('[^A-Za-z0-9_\.\-\/ ]+','',directory)
     file = re.sub('[^A-Za-z0-9_\.\- ]+','',file)
     call(['mkdir','-p', directory])
     call(['wget', '-c', url, '-O', directory + '/' + file])

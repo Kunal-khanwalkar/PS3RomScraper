@@ -22,14 +22,14 @@ def download(game):
 
     rap_url = NOPAYSTATION + divs[5].xpath('./div[2]/a')[0].attrib.get('href')
     rap_name = divs[5].xpath('./div[2]/a')[0].attrib.get('download')
-    FTP(rap_url, rap_name, title)
+    FTP(rap_url, rap_name, title + '/exdata')
     
     pkg = divs[0].xpath('./div/input')[0].attrib.get('value')
     FTP(pkg, title+'.pkg', title)
 
 
 def nopaystation(Search_Query):
-    URL = NOPAYSTATION + '/search?query=' + Search_Query + '&platform=ps3&limit=10&orderBy=completionDate&sort=DESC&missing=Show'
+    URL = NOPAYSTATION + '/search?query=' + Search_Query + '&platform=ps3&category=game&limit=10&orderBy=completionDate&sort=DESC&missing=Show'
     result = fetchSite(URL)    
     tree = html.fromstring(result.content)
     table_of_contents = tree.xpath('/html/body/div[1]/div/div[2]/div[1]/table/tbody')[0]
